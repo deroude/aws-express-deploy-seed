@@ -35,11 +35,15 @@ jobs:
       
       - name: Terraform Init
         working-directory: ./terraform
-        run: terraform init
+        run: terraform init -input=false
+
+      - name: Terraform Plan
+        working-directory: ./terraform
+        run: terraform plan -out=tfplan -input=false
 
       - name: Terraform Apply
         working-directory: ./terraform
-        run: terraform apply
+        run: terraform apply -input=false tfplan
 
       - name: Create ZIP deployment package
         run: zip -r deploy_package.zip ./app/*
