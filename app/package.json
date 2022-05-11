@@ -1,0 +1,22 @@
+{
+  "name": "aws-express-deploy-seed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deroude/aws-express-deploy-seed.git"
+  },
+  "author": "Valentin Raduti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deroude/aws-express-deploy-seed/issues"
+  },
+  "homepage": "https://github.com/deroude/aws-express-deploy-seed#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
