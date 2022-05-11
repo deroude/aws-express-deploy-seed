@@ -17,6 +17,7 @@ jobs:
         with:
           path: |
             terraform/terraform.tfstate
+          key: ${{runner.os}}-tfstate
       - name: create aws terraform config
         run: |
             echo $AWS_TFVARS >> terraform/terraform.tfvars
