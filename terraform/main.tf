@@ -28,16 +28,40 @@ resource "aws_s3_bucket_acl" "deploy-bucket-acl" {
 
 resource "aws_elastic_beanstalk_application" "webapp" {
   name        = "demo-web-app"
+
+  appversion_lifecycle {
+    service_role          = aws_iam_role.beanstalk_service.arn
+    max_count             = 3
+    delete_source_from_s3 = true
+  }
 }
 
 resource "aws_elastic_beanstalk_environment" "environment" {
   name                = "demo-web-env"
   application         = aws_elastic_beanstalk_application.webapp.name
   solution_stack_name = "64bit Amazon Linux 2 v5.5.2 running Node.js 16"
-  
+
   setting {
       namespace = "aws:autoscaling:launchconfiguration"
       name = "IamInstanceProfile"
       value = "aws-elasticbeanstalk-ec2-role"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:launchconfiguration"
+    name      = "InstanceType"
+    value     = "t2.micro"
+  }
+
+  setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MinSize"
+    value     = 1
+  }
+
+  setting {
+    namespace = "aws:autoscaling:asg"
+    name      = "MaxSize"
+    value     = 1
   }
 }
