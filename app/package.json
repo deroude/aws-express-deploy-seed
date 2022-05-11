@@ -18,5 +18,8 @@
   "homepage": "https://github.com/deroude/aws-express-deploy-seed#readme",
   "dependencies": {
     "express": "^4.18.1"
+  },
+  "engines": {
+    "node": "16"
   }
 }
