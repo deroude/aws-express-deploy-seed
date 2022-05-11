@@ -46,7 +46,7 @@ jobs:
         run: terraform apply -input=false tfplan
 
       - name: Create ZIP deployment package
-        run: zip -r deploy_package.zip ./app/*
+        run: zip -r -j deploy_package.zip ./app/*
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
