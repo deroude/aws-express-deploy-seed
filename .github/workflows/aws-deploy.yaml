@@ -19,11 +19,15 @@ jobs:
             terraform/terraform.tfstate
           key: ${{runner.os}}-tfstate
       - name: create aws terraform config
+        working-directory: ./terraform
         run: |
-            echo $AWS_TFVARS >> terraform/terraform.tfvars
+            touch terraform.tfvars
+            echo aws_access_key = "$AWS_ACCESS_KEY" >> terraform.tfvars
+            echo aws_secret_key = "$AWS_SECRET_KEY" >> terraform.tfvars
         shell: bash
         env:
-          AWS_TFVARS : ${{secrets.AWS_TFVARS}}
+          AWS_ACCESS_KEY : ${{secrets.AWS_ACCESS_KEY}}
+          AWS_SECRET_KEY : ${{secrets.AWS_SECRET_KEY}}
 
       - uses: hashicorp/setup-terraform@v2
         with:
