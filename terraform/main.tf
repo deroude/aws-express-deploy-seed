@@ -28,12 +28,6 @@ resource "aws_s3_bucket_acl" "deploy-bucket-acl" {
 
 resource "aws_elastic_beanstalk_application" "webapp" {
   name        = "demo-web-app"
-
-  appversion_lifecycle {
-    service_role          = aws_iam_role.beanstalk_service.arn
-    max_count             = 3
-    delete_source_from_s3 = true
-  }
 }
 
 resource "aws_elastic_beanstalk_environment" "environment" {
